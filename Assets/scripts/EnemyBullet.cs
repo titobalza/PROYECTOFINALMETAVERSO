@@ -27,5 +27,9 @@ public class EnemyBullet : MonoBehaviour
             // Destruye la bala     
             Destroy(gameObject);
         }
+        if (other.gameObject.CompareTag("wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
