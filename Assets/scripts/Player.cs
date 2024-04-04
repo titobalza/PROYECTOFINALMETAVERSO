@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    
     public GameObject bulletPrefab;
     public Transform firePoint;
     private Vector2 direction = Vector2.right; // Default direction
-    private int bulletCount = 10;
+    
 
     void Update()
     {
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
             firePoint.right = direction; // Rotate the firePoint to face the direction of movement
         }
 
-        if (Input.GetButtonDown("Fire1") && bulletCount > 0) // Check if there are still bullets left
+        if (Input.GetButtonDown("Fire1")) 
         {
             Shoot();
         }
@@ -36,7 +37,6 @@ public class Player : MonoBehaviour
         // Set the bullet's direction
         bullet.GetComponent<Bullet>().SetDirection(direction);
 
-        // Decrease the bullet count
-        bulletCount--;
+        
     }
 }

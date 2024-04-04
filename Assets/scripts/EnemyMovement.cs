@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    
     public float speed = 2f; // Velocidad de movimiento del enemigo
     public float jumpForce = 5f; // Fuerza del salto
     public float distance = 5f; // Distancia que el enemigo recorrerá de izquierda a derecha
     private bool movingRight = true; // Determina si el enemigo se está moviendo hacia la derecha
     private bool grounded = false; // Determina si el enemigo está en el suelo
-
+    
     public GameObject bulletPrefab; // El prefab de la bala
     public Transform balaSpawnPoint; // El punto donde se creará la bala
     public float fireRate = 1f; // La tasa a la que el enemigo dispara
@@ -72,10 +73,14 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+
+ 
     void Shoot()
     {
+
         // Crea una nueva instancia de la bala en la posición del punto de disparo
         GameObject bullet = Instantiate(bulletPrefab, balaSpawnPoint.position, balaSpawnPoint.rotation);
-        // Aquí puedes añadir código para hacer que la bala se mueva
+        
     }
 }
+
