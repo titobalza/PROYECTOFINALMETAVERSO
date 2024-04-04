@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damage = 1; // El daño que hace la bala
+    public int damage = 2; // El daño que hace la bala
     public float speed = 20f;
     public Rigidbody2D rb;
     public float lifetime = 2.0f; // El tiempo en segundos que la bala existirá
@@ -20,6 +20,15 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = direction.normalized * speed;
     }
+    public void DoubleDamage()
+{
+    damage *= 2;
+}
+
+public void ResetDamage()
+{
+    damage /= 2;
+}
 
     void OnTriggerEnter2D(Collider2D other)
     {

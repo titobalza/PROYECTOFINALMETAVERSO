@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LivesManager : MonoBehaviour
 {
+    public NewBehaviourScript NewBehaviourScript;
     public SpriteRenderer livesRenderer; // El SpriteRenderer que muestra las vidas
     public Sprite[] livesSprites; // Array de sprites de vida
     private int currentLives;
@@ -23,7 +24,8 @@ public class LivesManager : MonoBehaviour
         }
         else
         {
-            // Manejar el fin del juego
+           NewBehaviourScript.Setup();
+
         }
     }
 

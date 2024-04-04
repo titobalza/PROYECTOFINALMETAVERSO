@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
+     public NewBehaviourScript NewBehaviourScript;
     public GameObject bulletPrefab;
     public Transform firePoint;
     private Vector2 direction = Vector2.right; // Default direction
@@ -27,8 +27,24 @@ public class Player : MonoBehaviour
         {
             Shoot();
         }
+          if (Input.GetKey(KeyCode.LeftArrow))
+    {
+        GetComponent<SpriteRenderer>().flipX = true;
+    }
+    else if (Input.GetKey(KeyCode.RightArrow))
+    {
+        GetComponent<SpriteRenderer>().flipX = false;
+    }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Goal"))
+    {
+        // Muestra la pantalla de Felicitaciones
+        NewBehaviourScript.Setup();
+    }
+}
     void Shoot()
     {
         // Instantiate the bullet at the fire point

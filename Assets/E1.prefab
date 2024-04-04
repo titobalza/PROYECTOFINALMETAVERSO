@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  jumpForce: 5
-  distance: 5
+  distance1: 5
+  distance2: 3
   bulletPrefab: {fileID: 8632212789406362181, guid: a1ee4bf1ce384ce42a05fe484a4da816, type: 3}
   balaSpawnPoint: {fileID: 7660927694291069077}
-  fireRate: 1
+  fireRate: 0.89
