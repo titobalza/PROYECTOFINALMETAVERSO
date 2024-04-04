@@ -1,26 +1,42 @@
+// Script del jugador
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject bulletPrefab; // El prefab de la bala
-    public Transform bulletSpawnPoint; // El punto donde se creará la bala
-    public int bulletCount = 10; // El número de balas disponibles
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    private Vector2 direction = Vector2.right; // Default direction
+    private int bulletCount = 10;
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && bulletCount > 0) // Si se presiona el botón de disparo y quedan balas
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        
+        // Update the direction based on input
+        if (moveHorizontal != 0 || moveVertical != 0)
+        {
+            direction = new Vector2(moveHorizontal, moveVertical);
+            firePoint.right = direction; // Rotate the firePoint to face the direction of movement
+        }
+
+        if (Input.GetButtonDown("Fire1") && bulletCount > 0) // Check if there are still bullets left
         {
             Shoot();
-            bulletCount--;
         }
     }
 
     void Shoot()
     {
-        // Crea una nueva instancia de la bala en la posición del punto de disparo
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        // Aquí puedes añadir código para hacer que la bala se mueva
+        // Instantiate the bullet at the fire point
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+
+        // Set the bullet's direction
+        bullet.GetComponent<Bullet>().SetDirection(direction);
+
+        // Decrease the bullet count
+        bulletCount--;
     }
 }

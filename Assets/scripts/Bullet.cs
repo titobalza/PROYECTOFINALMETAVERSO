@@ -1,3 +1,4 @@
+// Script de la bala
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,13 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, lifetime);
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        rb.velocity = direction.normalized * speed;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -20,14 +26,7 @@ public class Bullet : MonoBehaviour
         CharacterHealth characterHealth = other.GetComponent<CharacterHealth>();
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
 
-        if (characterHealth != null) // Si el objeto tiene un script CharacterHealth
-        {
-            // Hace daño al personaje
-            characterHealth.TakeDamage(damage);
-            // Destruye la bala
-            Destroy(gameObject);
-        }
-        else if (enemyHealth != null) // Si el objeto tiene un script EnemyHealth
+         if (enemyHealth != null) // Si el objeto tiene un script EnemyHealth
         {
             // Hace daño al enemigo
             enemyHealth.TakeDamage(damage);
